@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div>
+    <h1>Hello User, welcome!</h1>
+
+
+<tr class = "table-secondary">
+    <td th:text="${userInfo.getId()}"/><td>
+    <td th:text="${userInfo.getUsername()}"/><td>
+    <td th:text="${userInfo.getPassword()}"/><td>
+    <td th:text="${userInfo.getAge()}"/><td>
+    <td th:text="${userInfo.getRoles()}"/><td>
+</tr>
+</tbody>
+
+
+<br>
+<form th:action="@{/index}">
+    <input type="submit" value="home"/>
+</form>
+<br>
+<form th:action="@{/logout}">
+    <input type="submit" value="logout"/>
+</form>
+</div>
+</body>
+</html>

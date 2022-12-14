@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+</head>
+<body>
+<div>
+<h1>Welcome Admin!</h1>
+
+  <table class="table">
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>username</th>
+      <th>password</th>
+      <th>age</th>
+      <th>role</th>
+      <th>Edit</th>
+      <th>
+      <th>Delete</th>
+      <th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="user : ${listUsers}">
+      <td th:text="${user.getId()}"/>
+      <td th:text="${user.getUsername()}"/>
+      <td th:text="${user.getPassword()}"/>
+      <td th:text="${user.getAge()}"/>
+      <td th:text="${user.getRoles()}"/>
+      <td>
+        <a th:href="@{/admin/{id}/edit(id=${user.getId()})}">Edit</a>
+      <td/>
+      <td>
+        <a th:href="@{/admin/{id}/delete(id=${user.getId()})}">Delete</a>
+      <td/>
+    </tr>
+    </tbody>
+    <style>
+      h2 {
+        font-family: sans-serif;
+        font-weight: bold;
+        color: #2d2d2d;
+        font-size: 32px;
+      }
+      table,
+      th,
+      td {
+        padding: 10px;
+        border: 1px solid #252525;
+        border-collapse: collapse;
+        font-family: sans-serif;
+        text-align: center;
+        vertical-align: middle;
+      }
+      thead {
+        background-color: #333;
+        color: white;
+      }
+      tbody tr:nth-child(odd) {
+        background-color: #fff;
+      }
+      tbody tr:nth-child(even) {
+        background-color: #eee;
+      }
+    </style>
+  </table>
+  <br>
+  <br>
+  <form th:method="POST" th:action="@{/admin/add}" th:object="${user}">
+    <label for="username">Enter name: </label>
+    <input type="text" th:field="*{username}" id="username"/>
+    <br>
+    <br/>
+
+    <label for="password">Enter password: </label>
+    <input type="text" th:field="*{password}" id="password"/>
+    <br>
+    <br/>
+
+    <label for="age">Enter email: </label>
+    <input type="text" th:field="*{age}" id="age"/>
+    <br>
+    <br/>
+
+    <label for="role">Enter role (1 or 2): </label>
+    <input type="text" th:field="*{roles}" id="role"/>
+    <br>
+    <br/>
+
+    <input type="submit" value="Create!"/>
+  </form>
+  <br/>
+<form th:action="@{/index}">
+  <input type="submit" value="home"/>
+</form>
+<br>
+<form th:action="@{/logout}">
+  <input type="submit" value="logout"/>
+</form>
+</div>
+</body>
+</html>
