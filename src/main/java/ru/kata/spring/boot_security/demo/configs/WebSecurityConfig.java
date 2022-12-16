@@ -24,6 +24,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         this.successUserHandler = successUserHandler;
     }
 
+
     @Autowired
     public void setMyUserDetailService(MyUserDetailService myUserDetailService) {
         this.myUserDetailService = myUserDetailService;
@@ -45,7 +46,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     .logout()
                     .permitAll();
     }
-
 
     @Bean
     public JdbcUserDetailsManager users(DataSource dataSource) {
