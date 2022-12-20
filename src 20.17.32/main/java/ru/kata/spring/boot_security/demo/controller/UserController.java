@@ -11,7 +11,7 @@ import ru.kata.spring.boot_security.demo.service.UserServiceImpl;
 import java.security.Principal;
 
 @Controller
-public class MyController {
+public class UserController {
     private MyUserDetailService myUserDetailService;
 
     private UserServiceImpl userServiceImpl;
@@ -31,47 +31,47 @@ public class MyController {
         return "index";
     }
 
-    @GetMapping("user")
+    @RequestMapping("user")
     public String updateUser(Principal principal, Model model) {
         User user = myUserDetailService.findByUsername(principal.getName());
         model.addAttribute("userInfo", user);
         return "user";
     }
 
-    @PostMapping("/admin/add")
+    @RequestMapping("/admin/add")
     public String addUser(@ModelAttribute("user") User user) {
         userServiceImpl.addUser(user);
         return "redirect:/admin";
     }
 
-    @GetMapping("/admin")
+    @RequestMapping("/admin")
     public String listUsers(Model model) {
         model.addAttribute("user", new User());
         model.addAttribute("listUsers", userServiceImpl.listUsers());
 
         return "admin";
     }
-    @GetMapping("admin/{id}/delete")
-    public String delete(Model model, @PathVariable("id") int id) {
+    @RequestMapping("admin/id/delete")
+    public String delete(Model model, @RequestParam("id") int id) {
         model.addAttribute("user", userServiceImpl.getUserById(id));
         return "delete";
     }
 
-    @DeleteMapping("admin/{id}")
-    public String removeUser(@PathVariable("id") int id) {
+    @RequestMapping("admin/id")
+    public String removeUser(@RequestParam("id") int id) {
         userServiceImpl.removeUser(id);
 
         return "redirect:/admin";
     }
 
-    @GetMapping("admin/{id}/edit")
-    public String edit(Model model, @PathVariable("id") int id) {
+    @RequestMapping("admin/id/edit")
+    public String edit(Model model, @RequestParam("id") int id) {
         model.addAttribute("user", userServiceImpl.getUserById(id));
         return "edit";
     }
 
-    @PatchMapping("admin/{id}")
-    public String updateUser(@ModelAttribute("user") User user, @PathVariable("id") int id) {
+    @RequestMapping("admin/{id}")
+    public String updateUser(@ModelAttribute("user") User user, @RequestParam("id") int id) {
         userServiceImpl.updateUser(user, id);
         return "redirect:/admin";
     }
