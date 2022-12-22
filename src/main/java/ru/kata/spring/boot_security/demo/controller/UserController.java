@@ -46,28 +46,28 @@ public class UserController {
         return "admin";
     }
 
-    @GetMapping("admin/{id}/delete")
-    public String delete(Model model, @PathVariable("id") int id) {
+    @GetMapping("admin/id/delete")
+    public String delete(Model model, @RequestParam("id") int id) {
         model.addAttribute("user", userServiceImpl.getUserById(id));
         return "delete";
     }
 
-    @GetMapping("admin/{id}/edit")
-    public String edit(Model model, @PathVariable("id") int id) {
+    @GetMapping("admin/id/edit")
+    public String edit(Model model, @RequestParam("id") int id) {
         model.addAttribute("user", userServiceImpl.getUserById(id));
         return "edit";
     }
 
 
 
-    @DeleteMapping("admin/{id}")
-    public String removeUser(@PathVariable("id") int id) {
+    @DeleteMapping("admin/id")
+    public String removeUser(@RequestParam("id") int id) {
         userServiceImpl.removeUser(id);
         return "redirect:/admin";
     }
 
-    @PatchMapping("admin/{id}")
-    public String updateUser(@ModelAttribute("user") User user, @PathVariable("id") int id) {
+    @PatchMapping("admin/id")
+    public String updateUser(@ModelAttribute("user") User user, @RequestParam("id") int id) {
         userServiceImpl.updateUser(user, id);
         return "redirect:/admin";
     }

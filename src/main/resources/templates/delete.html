@@ -7,7 +7,7 @@
 </head>
 <body>
 <div>
-  <form th:method="DELETE" th:action="@{/admin/{id}(id=${user.getId()})}" th:object="${user}">
+  <form th:method="DELETE" th:action="@{/admin/id(id=${user.getId()})}" th:object="${user}">
     <input type="submit" value="Delete"/>
   </form>
 </div>
