@@ -46,13 +46,13 @@ public class UserController {
         return "admin";
     }
 
-    @GetMapping("admin/id/delete")
+    @GetMapping("admin/delete")
     public String delete(Model model, @RequestParam("id") int id) {
         model.addAttribute("user", userServiceImpl.getUserById(id));
         return "delete";
     }
 
-    @GetMapping("admin/id/edit")
+    @GetMapping("admin/edit")
     public String edit(Model model, @RequestParam("id") int id) {
         model.addAttribute("user", userServiceImpl.getUserById(id));
         return "edit";
@@ -60,13 +60,13 @@ public class UserController {
 
 
 
-    @DeleteMapping("admin/id")
+    @DeleteMapping("admin/")
     public String removeUser(@RequestParam("id") int id) {
         userServiceImpl.removeUser(id);
         return "redirect:/admin";
     }
 
-    @PatchMapping("admin/id")
+    @PostMapping("admin/")
     public String updateUser(@ModelAttribute("user") User user, @RequestParam("id") int id) {
         userServiceImpl.updateUser(user, id);
         return "redirect:/admin";

@@ -30,10 +30,10 @@
       <td th:text="${user.getAge()}"/>
       <td th:text="${user.getRoles()}"/>
       <td>
-        <a th:href="@{/admin/id/edit(id=${user.getId()})}">Edit</a>
+        <a th:href="@{/admin/edit(id=${user.getId()})}">Edit</a>
       <td/>
       <td>
-        <a th:href="@{/admin/id/delete(id=${user.getId()})}">Delete</a>
+        <a th:href="@{/admin/delete(id=${user.getId()})}">Delete</a>
       <td/>
     </tr>
     </tbody>
